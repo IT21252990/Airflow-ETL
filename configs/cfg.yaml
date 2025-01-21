@@ -8,14 +8,14 @@ extract:
   name: csv_read
   storage_backend: fs
   use_package: arrow
-  path: /Users/gh05t/Documents/projects/etl/data
+  path: E:\AcuityKP\Projects\airflow_etl_project\Airflow-ETL\data
   fail_no_files: false
   reprocess: true
   # read_mode: all
   filters:
     keep_latest: true
     include:
-      - synthetic_10m
+      - synthetic_100k
 
 transformer:
   type: CHAIN_TRANSFORMER
@@ -27,12 +27,12 @@ transformer:
     - type: QUERY_TRANSFORMER
       name: query_transformer
       use_package: polars
-      table_name: synthetic_10m
+      table_name: synthetic_100k
       query: >-
         SELECT
           *
         FROM
-          synthetic_10m
+          synthetic_100k
         WHERE
           id % 5 = 0
 
@@ -41,5 +41,6 @@ storage:
   name: csv_write
   storage_backend: fs
   use_package: arrow
-  path: /Users/gh05t/Documents/projects/etl/exports
-  key: 'synthetic_10m_processed'
+  path: E:\AcuityKP\Projects\airflow_etl_project\Airflow-ETL\exports
+  key: 'synthetic_100k_processed'
+  time_fmt: '%Y-%m-%dT%H-%M-%S.%f%z'

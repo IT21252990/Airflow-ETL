@@ -5,9 +5,9 @@ from faker import Faker
 fake = Faker()
 
 # Define the number of rows
-# n_rows = 10_000_000  # 10m
+n_rows = 10_000_000  # 10m
 # n_rows = 1_000_000  # 1m
-n_rows = 100_000  # 100k
+# n_rows = 100_000  # 100k
 
 # Generate synthetic data
 data = {
@@ -21,4 +21,4 @@ data = {
 
 # Create a DataFrame and save as CSV
 df = pd.DataFrame(data)
-df.to_csv("synthetic_100k.csv", index=False)
+df.to_csv("data/synthetic_10m.csv", index=False)
